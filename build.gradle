@@ -1,10 +1,11 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.0-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.asciidoctor.convert' version '1.5.8'
 	id 'java'
 }
 
-group = 'com.example'
+group = 'com.jt.project.sake'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -12,6 +13,11 @@ repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
 	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+	set('springCloudVersion', "2020.0.4-SNAPSHOT")
 }
 
 dependencies {
@@ -25,5 +31,6 @@ dependencies {
 }
 
 test {
+	outputs.dir snippetsDir
 	useJUnitPlatform()
 }
